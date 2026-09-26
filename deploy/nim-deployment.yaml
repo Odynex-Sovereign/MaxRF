@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nim-nvlm-vision-service
+  namespace: maxrf-private-core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nim-nvlm-processor
+  template:
+    metadata:
+      labels:
+        app: nim-nvlm-processor
+    spec:
+      containers:
+      - name: nvlm-container
+        image: "nvcr.io/nim/nvidia/nvlm-1.0-vision:latest" # Pulling Nvidia's trending vision-language engine
+        env:
+        - name: NGC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ngc-secret
+              key: api-key
+        resources:
+          limits:
+            ://nvidia.com: 1 # Strictly lock to the Jetson Thor local partition line
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /opt/nim/.cache
+          name: model-cache
+      volumes:
+      - name: model-cache
+        persistentVolumeClaim:
+          claimName: local-storage-pvc
