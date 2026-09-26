@@ -1,0 +1,7 @@
+# Protect proprietary source code blocks from being included in external zip exports
+src/firmware/hydrogel_loop.py export-ignore
+src/firmware/kugel_bearing.py export-ignore
+config/network_slice.yaml export-ignore
+
+# Mark data models as binary-locked files to prevent plain-text caching or leaks
+deploy/nim-deployment.yaml text=auto
