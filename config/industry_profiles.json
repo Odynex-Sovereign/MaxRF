@@ -1,0 +1,75 @@
+{
+  "system_version": "5.0.0",
+  "project_codename": "MaxRF-Sovereign-Core",
+  "active_profile": "RESIDENTIAL_THEATER",
+  "profiles": {
+    "RESIDENTIAL_THEATER": {
+      "regulatory_compliance": ["TUTSA_TEXAS", "DTSA_US", "GDPR_EU_MAPPED"],
+      "thermal_management": {
+        "max_core_temp_celsius": 80.0,
+        "hydrogel_recharge_threshold_pct": 35.0,
+        "cooling_mode": "ATMOSPHERIC_SWEAT_DEHUMIDIFY"
+      },
+      "kinematics": {
+        "kugel_cushion_psi": 14.5,
+        "g_force_compensation": false,
+        "tracking_mode": "EYE_LINE_VOLUMETRIC"
+      },
+      "network_security": {
+        "sandbox_isolation_level": "STRICT_HARDWARE_SLICE",
+        "allowed_egress_subnets": ["10.0.0.0/8"]
+      }
+    },
+    "TACTICAL_DEFENSE": {
+      "regulatory_compliance": ["MIL-STD-810H", "NIST-SP-800-171", "DO-178C_LEVEL_A"],
+      "thermal_management": {
+        "max_core_temp_celsius": 105.0,
+        "hydrogel_recharge_threshold_pct": 10.0,
+        "cooling_mode": "RUGGED_MILITARY_CLOSED_LOOP"
+      },
+      "kinematics": {
+        "kugel_cushion_psi": 45.0,
+        "g_force_compensation": true,
+        "tracking_mode": "TACTICAL_BALLISTIC_VECTORING"
+      },
+      "network_security": {
+        "sandbox_isolation_level": "MILITARY_AIR_GAP_EMULATION",
+        "allowed_egress_subnets": ["SECRET_GOV_BACKBONE_ONLY"]
+      }
+    },
+    "STERILE_SURGICAL": {
+      "regulatory_compliance": ["FDA_CLASS_III", "HIPAA_DATA_LOCK", "ISO-13485"],
+      "thermal_management": {
+        "max_core_temp_celsius": 70.0,
+        "hydrogel_recharge_threshold_pct": 50.0,
+        "cooling_mode": "STERILE_NON_AIR_EXCHANGE_PASSIVE"
+      },
+      "kinematics": {
+        "kugel_cushion_psi": 12.0,
+        "g_force_compensation": false,
+        "tracking_mode": "MICRON_SURGICAL_ROBOTIC_ALIGN"
+      },
+      "network_security": {
+        "sandbox_isolation_level": "ZERO_OUTBOUND_LOCAL_INFERENCE_ONLY",
+        "allowed_egress_subnets": ["LOCAL_HOSPITAL_LAN_ONLY"]
+      }
+    },
+    "AUTONOMOUS_AGRI": {
+      "regulatory_compliance": ["ISO-25119", "TUTSA_TEXAS"],
+      "thermal_management": {
+        "max_core_temp_celsius": 95.0,
+        "hydrogel_recharge_threshold_pct": 20.0,
+        "cooling_mode": "CROP_DEW_HARVEST_MAX"
+      },
+      "kinematics": {
+        "kugel_cushion_psi": 32.5,
+        "g_force_compensation": true,
+        "tracking_mode": "TERRAIN_ROUGH_DYNAMIC_STABILIZATION"
+      },
+      "network_security": {
+        "sandbox_isolation_level": "OFFLINE_EDGE_FACTORY_FALLBACK",
+        "allowed_egress_subnets": ["ROAMING_CELLULAR_AG_GATEWAY"]
+      }
+    }
+  }
+}
