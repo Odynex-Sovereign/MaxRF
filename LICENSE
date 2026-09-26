@@ -1,0 +1,12 @@
+SOVEREIGN PROPRIETARY SOFTWARE LICENSE AGREEMENT
+PROJECT REFREX: MAXRF PROTOCOL SYSTEM
+COPYRIGHT (C) 2026, ODYNEX-SOVEREIGN. ALL RIGHTS RESERVED.
+
+1. PROPRIETARY GRANT AND RESTRICTIONS
+This software, including all accompanying source code, configurations, architectural blueprints, and binary distributions, is the exclusive, highly confidential property of Odynex-Sovereign. No express or implied license is granted to any party to read, modify, compile, distribute, or execute this codebase unless explicitly authorized in a separate, written, and signed commercial Master Services Agreement (MSA) or Joint Venture Agreement by an executive officer of Odynex-Sovereign.
+
+2. COMPLIANCE & PRIVACY ASSURANCE
+Any execution of the networking, dataplane, or DPU sandboxing components contained herein must comply fully with localized residential privacy ordinances. The network slicing architectures defined in this repository are strictly bound to hardware-isolated partitions; unauthorized crossing or modifications intended to capture residential host network packets without an explicit, cryptographically signed tenant key will cause an immediate termination of this operating license.
+
+3. NO WARRANTY
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THIS CODEBASE.
