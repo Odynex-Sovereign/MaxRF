@@ -1,0 +1,17 @@
+# --- NVIDIA ACCELERATED ARCHITECTURE LAYER ---
+# Core CUDA runtime and hardware-accelerated numeric array processing bindings
+cupy-cuda12x>=12.0.0
+tensorrt>=10.0.1
+nvidia-pyindex>=1.0.9
+
+# --- EDGE AI & VISION PIPELINE ---
+# Dependencies for local ambient room tracking and vision-language model execution (NVLM/Nemotron)
+torch>=2.4.0
+transformers>=4.44.0
+opencv-python-headless>=4.10.0.84
+
+# --- SECURITY & UTILITY PLATFORM ---
+# Infrastructure configurations and dashboard diagnostics pipelines
+pyyaml>=6.0.1
+pydantic>=2.8.2
+psutil>=6.0.0
