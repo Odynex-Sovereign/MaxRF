@@ -1,0 +1,38 @@
+name: MaxRF Core Validation Pipeline
+
+on:
+  push:
+    branches: [ "main", "development" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Private Source Code
+      uses: actions/checkout@v4
+
+    - name: Set Up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-node: '3.11'
+        cache: 'pip'
+
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgl1-mesa-glx
+
+    - name: Install Production Requirements
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Execute Security & Thermal Test Suite
+      run: |
+        # Run test scripts programmatically to catch regressions before deployment
+        python src/security/firewall.py
+        python src/firmware/kugel_bearing.py
+        python src/firmware/hydrogel_loop.py
