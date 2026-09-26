@@ -1,0 +1,36 @@
+version: "1.0"
+metadata:
+  component: "BlueField-3-DPU-DataPlane"
+  project: "MaxRF-Sovereign"
+
+network_slices:
+  - id: "slice_public_compute_01"
+    allocation: "80%" # Dedicate primary bandwidth to remote AI rendering tasks
+    vlan: 1040
+    hardware_isolation:
+      gpu_affinity: [0, 1] # Bind strictly to external Blackwell cluster nodes
+      pcie_passthrough: true
+    firewall_rules:
+      ingress:
+        - permit: "tcp"
+          source: "enterprise_tenant_pool"
+          port: [443, 8080]
+      egress:
+        - permit: "all"
+          destination: "cloud_orchestration_backbone"
+        - deny: "all"
+          destination: "192.168.1.0/24" # ABSOLUTE DROP: Prevents cloud access to local home Wi-Fi
+
+  - id: "slice_private_theater_02"
+    allocation: "20%" # Guard high-priority, zero-latency local pipeline
+    vlan: 1050
+    hardware_isolation:
+      gpu_affinity: [2] # Isolated Jetson Thor SoM display engine alignment
+    firewall_rules:
+      ingress:
+        - permit: "udp" # Maximize throughput for wireless spatial streaming
+          source: "local_input_transmitter"
+          port: 9000
+      egress:
+        - permit: "all"
+          destination: "display_panel_optical_bus"
