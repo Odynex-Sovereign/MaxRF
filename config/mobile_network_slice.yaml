@@ -1,0 +1,30 @@
+version: "4.0"
+metadata:
+  component: "BlueField-3-DPU-Mobility-DataPlane"
+  compliance: ["ISO-26262-ASIL-D", "DO-178C-Level-A"]
+
+mobility_network_slices:
+  - id: "slice_avionics_telemetry_01"
+    allocation: "15%"
+    vlan: 2010
+    priority: "CRITICAL_HAZARD_PREVENTION" # Hardened priority queue
+    routing_interfaces: ["Primary-ARINC-429-Bus", "CAN-FD-Core"]
+    firewall_rules:
+      ingress:
+        - permit: "all"
+          source: "internal_flight_control_computer"
+      egress:
+        - permit: "all"
+          destination: "telemetry_ground_station"
+        - deny: "all"
+          destination: "public_passenger_wi_fi" # HARD FIREWALL: Passenger Wi-Fi can never touch flight controls
+
+  - id: "slice_distributed_cloud_tenant_02"
+    allocation: "85%" # Bulk bandwidth dedicated to cloud tasks when connection is stable
+    vlan: 2020
+    priority: "BEST_EFFORT_COMPUTE"
+    routing_interfaces: ["Inmarsat-Aero-Satcom", "Starlink-Aviation-Terminal", "Ground-5G-LTE"]
+    dynamic_handover_policy:
+      trigger_metric: "packet_loss_pct"
+      threshold: 8.5
+      fallback_order: ["Starlink-Aviation-Terminal", "Inmarsat-Aero-Satcom", "DROP_COMPUTE_LOAD"]
